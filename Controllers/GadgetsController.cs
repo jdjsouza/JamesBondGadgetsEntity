@@ -10,19 +10,31 @@ namespace JamesBondGadgetsEntity.Controllers
 {
     public class GadgetsController : Controller
     {
+        private ApplicationDbContext context;
+
+        public GadgetsController()
+        {
+            context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            context.Dispose();
+        }
+
         // GET: Gadgets
         public ActionResult Index()
         {
 
 
-            return View("Index", gadgets);
+            return View("Index");
         }
 
         public ActionResult Details(int id)
         {
 
 
-            return View("Details", gadget);
+            return View("Details");
         }
 
         public ActionResult Create()
@@ -33,13 +45,13 @@ namespace JamesBondGadgetsEntity.Controllers
         public ActionResult Edit(int id)
         {
 
-            return View("GadgetForm", gadgets);
+            return View("GadgetForm");
         }
 
         public ActionResult Delete(int id)
         {
 
-            return View("Index", gadgets);
+            return View("Index");
         }
 
         public ActionResult ProcessCreate(GadgetModel gadgetModel)
@@ -62,7 +74,7 @@ namespace JamesBondGadgetsEntity.Controllers
 
 
 
-            return View("Index", searchResults);
+            return View("Index");
         }
 
         public ActionResult SearchForDescription(string searchPhrase)
@@ -70,7 +82,7 @@ namespace JamesBondGadgetsEntity.Controllers
             // get a list of search results from the database
 
 
-            return View("Index", searchResults);
+            return View("Index");
         }
     }
 }
